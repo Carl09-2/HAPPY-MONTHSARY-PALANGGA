@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#2b0f1a">
+  <title>Happy Monthsary Palangga 💖</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      font-family: 'Georgia', 'Times New Roman', serif;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      overscroll-behavior: none;
+      touch-action: manipulation;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      /* BACKGROUND IMAGE WITH DARK OVERLAY */
+      background-color: #1a0a10;
+      background-image: 
+        linear-gradient(to bottom, rgba(30, 5, 15, 0.75), rgba(15, 2, 8, 0.9)),
+        url('couple.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+      overflow: hidden;
+    }
+
+    /* ========== BACKGROUND GLOWS ========== */
+    .glow {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(60px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.45;
+    }
+    .glow.g1 {
+      width: 220px; height: 220px;
+      background: #ff4d88;
+      top: -60px; left: -60px;
+      animation: drift1 16s infinite ease-in-out alternate;
+    }
+    .glow.g2 {
+      width: 200px; height: 200px;
+      background: #ff9ec4;
+      bottom: -50px; right: -50px;
+      animation: drift2 18s infinite ease-in-out alternate;
+    }
+    .glow.g3 {
+      width: 160px; height: 160px;
+      background: #ff2e63;
+      top: 55%; left: 65%;
+      animation: drift3 20s infinite ease-in-out alternate;
+    }
+
+    @keyframes drift1 {
+      0%   { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(40px, 30px) scale(1.15); }
+    }
+    @keyframes drift2 {
+      0%   { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(-35px, -30px) scale(1.1); }
+    }
+    @keyframes drift3 {
+      0%   { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(-30px, 25px) scale(1.08); }
+    }
+
+    /* ========== FLOATING HEARTS ========== */
+    .floating-hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    .f-heart {
+      position: absolute;
+      color: #ff6b9d;
+      opacity: 0;
+      animation: floatUp 9s infinite ease-in;
+      filter: drop-shadow(0 0 8px rgba(255, 100, 150, 0.7));
+      will-change: transform, opacity;
+    }
+
+    .f-heart:nth-child(1)  { left: 8%;  font-size: 14px; animation-delay: 0s;    animation-duration: 9s; }
+    .f-heart:nth-child(2)  { left: 22%; font-size: 20px; animation-delay: 1.5s;  animation-duration: 11s; }
+    .f-heart:nth-child(3)  { left: 38%; font-size: 12px; animation-delay: 3s;    animation-duration: 8s; }
+    .f-heart:nth-child(4)  { left: 52%; font-size: 18px; animation-delay: 0.8s;  animation-duration: 12s; }
+    .f-heart:nth-child(5)  { left: 68%; font-size: 16px; animation-delay: 2.2s;  animation-duration: 10s; }
+    .f-heart:nth-child(6)  { left: 82%; font-size: 22px; animation-delay: 4s;    animation-duration: 13s; }
+    .f-heart:nth-child(7)  { left: 92%; font-size: 13px; animation-delay: 1s;    animation-duration: 9.5s; }
+    .f-heart:nth-child(8)  { left: 15%; font-size: 17px; animation-delay: 5s;    animation-duration: 11.5s; }
+    .f-heart:nth-child(9)  { left: 45%; font-size: 15px; animation-delay: 6.5s;  animation-duration: 10.5s; }
+    .f-heart:nth-child(10) { left: 75%; font-size: 19px; animation-delay: 3.5s;  animation-duration: 12.5s; }
+    .f-heart:nth-child(11) { left: 30%; font-size: 11px; animation-delay: 7s;    animation-duration: 8.5s; }
+    .f-heart:nth-child(12) { left: 60%; font-size: 21px; animation-delay: 2s;    animation-duration: 14s; }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(105vh) rotate(0deg) scale(0.6);
+        opacity: 0;
+      }
+      10% { opacity: 0.9; }
+      50% { opacity: 1; }
+      90% { opacity: 0.6; }
+      100% {
+        transform: translateY(-15vh) rotate(360deg) scale(1.1);
+        opacity: 0;
+      }
+    }
+
+    /* ========== TWINKLING STARS ========== */
+    .stars {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .star {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0;
+      animation: twinkle 3s infinite ease-in-out;
+      box-shadow: 0 0 6px 2px rgba(255, 200, 220, 0.8);
+      will-change: opacity, transform;
+    }
+
+    .star:nth-child(1)  { top: 12%; left: 15%; animation-delay: 0s; }
+    .star:nth-child(2)  { top: 25%; left: 72%; animation-delay: 0.5s; }
+    .star:nth-child(3)  { top: 45%; left: 8%;  animation-delay: 1s; }
+    .star:nth-child(4)  { top: 68%; left: 88%; animation-delay: 1.5s; }
+    .star:nth-child(5)  { top: 82%; left: 30%; animation-delay: 2s; }
+    .star:nth-child(6)  { top: 8%;  left: 55%; animation-delay: 0.3s; }
+    .star:nth-child(7)  { top: 58%; left: 45%; animation-delay: 1.8s; }
+    .star:nth-child(8)  { top: 35%; left: 92%; animation-delay: 2.4s; }
+    .star:nth-child(9)  { top: 90%; left: 65%; animation-delay: 0.8s; }
+    .star:nth-child(10) { top: 75%; left: 12%; animation-delay: 1.2s; }
+    .star:nth-child(11) { top: 50%; left: 62%; animation-delay: 2.8s; }
+    .star:nth-child(12) { top: 18%; left: 35%; animation-delay: 1.6s; }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0; transform: scale(0.5); }
+      50%      { opacity: 1; transform: scale(1.6); }
+    }
+
+    /* ========== FLOATING CUTE CAT (HOLDING HEART) ========== */
+    .cat-container {
+      position: fixed;
+      width: 80px;
+      height: 80px;
+      pointer-events: none;
+      z-index: 25;
+      animation: catFloat 22s infinite ease-in-out alternate;
+      filter: drop-shadow(0 6px 14px rgba(255, 60, 120, 0.5));
+      will-change: top, left, transform;
+    }
+
+    .cat-container svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      animation: catBob 2.6s infinite ease-in-out;
+      will-change: transform;
+    }
+
+    @keyframes catFloat {
+      0%   { top: 6%;  left: 4%;  transform: rotate(-6deg) scale(1); }
+      18%  { top: 72%; left: 10%; transform: rotate(8deg) scale(1.05); }
+      36%  { top: 10%; left: 80%; transform: rotate(-12deg) scale(1); }
+      54%  { top: 76%; left: 66%; transform: rotate(5deg) scale(0.95); }
+      72%  { top: 38%; left: 46%; transform: rotate(-4deg) scale(1.04); }
+      100% { top: 8%;  left: 22%; transform: rotate(-9deg) scale(1.02); }
+    }
+
+    @keyframes catBob {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      30%      { transform: translateY(-5px) rotate(3deg); }
+      70%      { transform: translateY(4px) rotate(-3deg); }
+    }
+
+    .cat-container .tail {
+      transform-origin: 95px 78px;
+      animation: tailWag 2s infinite ease-in-out;
+    }
+
+    @keyframes tailWag {
+      0%, 100% { transform: rotate(0deg); }
+      50%      { transform: rotate(12deg); }
+    }
+
+    .cat-container .eyes {
+      animation: blink 4s infinite;
+      transform-origin: center;
+    }
+
+    @keyframes blink {
+      0%, 92%, 100% { transform: scaleY(1); }
+      95%, 97% { transform: scaleY(0.1); }
+    }
+
+    .cat-container .held-heart {
+      transform-origin: 60px 68px;
+      animation: heldHeartPulse 1.8s infinite ease-in-out;
+    }
+
+    @keyframes heldHeartPulse {
+      0%, 100% { transform: scale(1); }
+      50%      { transform: scale(1.15); filter: drop-shadow(0 0 6px #ff4d88); }
+    }
+
+    /* ========== MAIN CARD ========== */
+    .container {
+      background: linear-gradient(160deg, rgba(45, 10, 25, 0.92) 0%, rgba(25, 5, 15, 0.96) 100%);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 2rem 1.4rem 1.8rem;
+      border-radius: 24px;
+      box-shadow: 0 25px 60px -20px rgba(0, 0, 0, 0.85),
+                  0 0 0 1px rgba(255, 120, 160, 0.3) inset,
+                  0 0 50px -10px rgba(255, 60, 120, 0.2);
+      text-align: center;
+      max-width: 480px;
+      width: calc(100% - 1.6rem);
+      max-height: 94dvh;
+      max-height: 94vh;
+      overflow-y: auto;
+      margin: 0 auto;
+      position: relative;
+      z-index: 20;
+      -webkit-overflow-scrolling: touch;
+      border: 1px solid rgba(255, 140, 175, 0.25);
+      animation: cardGlow 4s infinite ease-in-out;
+    }
+
+    @keyframes cardGlow {
+      0%, 100% {
+        box-shadow: 0 25px 60px -20px rgba(0, 0, 0, 0.85),
+                    0 0 0 1px rgba(255, 120, 160, 0.3) inset,
+                    0 0 50px -10px rgba(255, 60, 120, 0.2);
+      }
+      50% {
+        box-shadow: 0 25px 60px -20px rgba(0, 0, 0, 0.85),
+                    0 0 0 1px rgba(255, 140, 180, 0.5) inset,
+                    0 0 70px -5px rgba(255, 80, 140, 0.35);
+      }
+    }
+
+    .container::-webkit-scrollbar {
+      width: 4px;
+    }
+    .container::-webkit-scrollbar-thumb {
+      background: #ff6b9d;
+      border-radius: 10px;
+    }
+    .container::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .ornament {
+      font-size: 1rem;
+      color: #ffb3cc;
+      letter-spacing: 0.5rem;
+      margin-bottom: 0.9rem;
+      opacity: 0.8;
+      animation: ornamentPulse 3s infinite ease-in-out;
+    }
+
+    @keyframes ornamentPulse {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50%      { opacity: 1;   transform: scale(1.08); }
+    }
+
+    h1 {
+      font-size: clamp(1.35rem, 6.5vw, 1.9rem);
+      font-weight: 700;
+      color: #ffe3ee;
+      text-shadow: 0 0 15px rgba(255, 100, 150, 0.8),
+                   0 0 30px rgba(255, 60, 120, 0.4);
+      margin-bottom: 0.4rem;
+      line-height: 1.25;
+      word-break: break-word;
+      letter-spacing: 0.5px;
+      font-family: 'Georgia', serif;
+      animation: titleShimmer 5s infinite ease-in-out;
+    }
+
+    @keyframes titleShimmer {
+      0%, 100% {
+        text-shadow: 0 0 15px rgba(255, 100, 150, 0.8),
+                     0 0 30px rgba(255, 60, 120, 0.4);
+      }
+      50% {
+        text-shadow: 0 0 25px rgba(255, 140, 180, 1),
+                     0 0 45px rgba(255, 80, 140, 0.7);
+      }
+    }
+
+    h1 .paw {
+      display: inline-block;
+      font-size: 0.8em;
+      filter: drop-shadow(0 0 8px rgba(255, 120, 160, 0.9));
+      animation: pawWiggle 3s infinite ease-in-out;
+    }
+
+    @keyframes pawWiggle {
+      0%, 100% { transform: rotate(0deg); }
+      25%      { transform: rotate(-10deg); }
+      75%      { transform: rotate(10deg); }
+    }
+
+    .subtitle {
+      font-size: clamp(0.8rem, 3.4vw, 0.95rem);
+      color: #ffb0c8;
+      font-weight: 400;
+      margin-bottom: 1.1rem;
+      font-style: italic;
+      letter-spacing: 0.3px;
+      opacity: 0.85;
+      animation: fadeInOut 4s infinite ease-in-out;
+    }
+
+    @keyframes fadeInOut {
+      0%, 100% { opacity: 0.6; }
+      50%      { opacity: 1; }
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-bottom: 1.3rem;
+      color: #ff85aa;
+      font-size: 0.85rem;
+    }
+    .divider::before,
+    .divider::after {
+      content: "";
+      height: 1px;
+      width: 40px;
+      background: linear-gradient(90deg, transparent, #ff6b9d, transparent);
+      animation: lineGlow 3s infinite ease-in-out;
+    }
+
+    @keyframes lineGlow {
+      0%, 100% { opacity: 0.5; }
+      50%      { opacity: 1; }
+    }
+
+    .divider .heart-icon {
+      animation: heartBeat 1.6s infinite ease-in-out;
+      display: inline-block;
+    }
+
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      15%      { transform: scale(1.25); }
+      30%      { transform: scale(1); }
+      45%      { transform: scale(1.15); }
+      60%      { transform: scale(1); }
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      margin-top: 0.3rem;
+    }
+
+    button {
+      position: relative;
+      border: none;
+      padding: 0.95rem 1.8rem;
+      font-size: clamp(0.92rem, 4vw, 1.1rem);
+      font-weight: 700;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      width: 100%;
+      max-width: 280px;
+      min-height: 52px;
+      touch-action: manipulation;
+      user-select: none;
+      -webkit-user-select: none;
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      color: #2b0f1a;
+      background: linear-gradient(135deg, #ffd6e5 0%, #ff9ec4 50%, #ff7eb3 100%);
+      box-shadow: 0 8px 25px -5px rgba(255, 80, 140, 0.7),
+                  0 0 0 1px rgba(255, 255, 255, 0.35) inset,
+                  0 -2px 0 rgba(180, 40, 90, 0.35) inset;
+      animation: btnPulse 2.4s infinite ease-in-out;
+    }
+
+    @keyframes btnPulse {
+      0%, 100% {
+        box-shadow: 0 8px 25px -5px rgba(255, 80, 140, 0.7),
+                    0 0 0 1px rgba(255, 255, 255, 0.35) inset,
+                    0 -2px 0 rgba(180, 40, 90, 0.35) inset;
+      }
+      50% {
+        box-shadow: 0 8px 35px 0px rgba(255, 100, 160, 0.9),
+                    0 0 0 1px rgba(255, 255, 255, 0.5) inset,
+                    0 -2px 0 rgba(180, 40, 90, 0.35) inset;
+      }
+    }
+
+    button::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50px;
+      background: linear-gradient(135deg, transparent 30%, rgba(255, 255, 255, 0.6) 50%, transparent 70%);
+      background-size: 250% 100%;
+      animation: shine 3s infinite linear;
+      pointer-events: none;
+    }
+
+    @keyframes shine {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    button::after {
+      content: "";
+      position: absolute;
+      inset: 3px;
+      border-radius: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      pointer-events: none;
+    }
+
+    button:active {
+      transform: translateY(3px) scale(0.98);
+      box-shadow: 0 3px 12px -3px rgba(255, 80, 140, 0.7),
+                  0 0 0 1px rgba(255, 255, 255, 0.25) inset;
+      animation: none;
+    }
+
+    .message-box {
+      margin-top: 1.4rem;
+      background: linear-gradient(160deg, rgba(255, 240, 246, 0.07) 0%, rgba(255, 200, 220, 0.04) 100%);
+      border-radius: 18px;
+      padding: 1.4rem 1.1rem;
+      font-size: clamp(0.88rem, 3.7vw, 1rem);
+      font-weight: 400;
+      color: #ffd6e5;
+      border: 1px solid rgba(255, 140, 175, 0.28);
+      box-shadow: inset 0 0 25px rgba(255, 100, 150, 0.06),
+                  0 8px 25px -10px rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transform: translateY(15px) scale(0.97);
+      transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+      pointer-events: none;
+      line-height: 1.8;
+      word-break: break-word;
+      text-align: left;
+      font-family: 'Georgia', serif;
+    }
+
+    .message-box.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+      animation: msgGlow 4s infinite ease-in-out;
+    }
+
+    @keyframes msgGlow {
+      0%, 100% {
+        box-shadow: inset 0 0 25px rgba(255, 100, 150, 0.06),
+                    0 8px 25px -10px rgba(0, 0, 0, 0.5);
+      }
+      50% {
+        box-shadow: inset 0 0 35px rgba(255, 100, 150, 0.15),
+                    0 8px 35px -10px rgba(255, 80, 140, 0.3);
+      }
+    }
+
+    .message-box p {
+      margin-bottom: 1rem;
+      animation: paragraphFade 0.8s ease both;
+    }
+
+    .message-box p:nth-child(2) { animation-delay: 0.15s; }
+    .message-box p:nth-child(3) { animation-delay: 0.3s; }
+    .message-box p:nth-child(4) { animation-delay: 0.45s; }
+    .message-box p:nth-child(5) { animation-delay: 0.6s; }
+
+    @keyframes paragraphFade {
+      from { opacity: 0; transform: translateX(-10px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    .message-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .big-msg {
+      font-size: clamp(1.1rem, 4.6vw, 1.35rem);
+      margin-bottom: 1rem;
+      font-weight: 700;
+      text-align: center;
+      color: #ffd6e5;
+      text-shadow: 0 0 15px rgba(255, 120, 160, 0.6);
+      font-style: italic;
+      animation: bigMsgPulse 2.5s infinite ease-in-out;
+    }
+
+    @keyframes bigMsgPulse {
+      0%, 100% { transform: scale(1); }
+      50%      { transform: scale(1.04); }
+    }
+
+    .highlight-pill {
+      font-weight: 700;
+      color: #2b0f1a;
+      background: linear-gradient(135deg, #ffd6e5, #ff9ec4);
+      padding: 0.12rem 0.6rem;
+      border-radius: 20px;
+      display: inline-block;
+      margin: 0.12rem 0;
+      font-style: normal;
+      font-size: 0.92em;
+      animation: pillGlow 2s infinite ease-in-out;
+    }
+
+    @keyframes pillGlow {
+      0%, 100% { box-shadow: 0 0 8px rgba(255, 150, 190, 0.5); }
+      50%      { box-shadow: 0 0 18px rgba(255, 150, 190, 0.9); }
+    }
+
+    .emoji-row {
+      text-align: center;
+      font-size: clamp(1.1rem, 4.2vw, 1.4rem);
+      margin: 0.9rem 0;
+      letter-spacing: 0.3rem;
+      opacity: 0.9;
+      animation: emojiBounce 2s infinite ease-in-out;
+    }
+
+    @keyframes emojiBounce {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-5px); }
+    }
+
+    .signature {
+      text-align: center;
+      font-style: italic;
+      font-weight: 700;
+      color: #ffb0c8;
+      margin-top: 1rem;
+      font-size: clamp(0.9rem, 3.6vw, 1.05rem);
+      text-shadow: 0 0 12px rgba(255, 100, 150, 0.5);
+      animation: sigFloat 3s infinite ease-in-out;
+    }
+
+    @keyframes sigFloat {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-3px); }
+    }
+
+    .sparkle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 30;
+      font-size: 18px;
+      opacity: 0;
+      animation: sparklePop 1.2s ease-out forwards;
+    }
+
+    @keyframes sparklePop {
+      0%   { opacity: 1; transform: translate(0, 0) scale(0.5) rotate(0deg); }
+      100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(1.5) rotate(var(--rot)); }
+    }
+
+    @media (max-height: 700px) {
+      .container {
+        padding: 1.5rem 1.1rem;
+        border-radius: 20px;
+      }
+      .ornament { margin-bottom: 0.6rem; font-size: 0.85rem; }
+      h1 { font-size: 1.3rem; margin-bottom: 0.25rem; }
+      .subtitle { font-size: 0.78rem; margin-bottom: 0.8rem; }
+      .divider { margin-bottom: 1rem; }
+      button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.88rem;
+        min-height: 48px;
+      }
+      .message-box {
+        margin-top: 1.1rem;
+        padding: 1.1rem 0.9rem;
+        line-height: 1.7;
+      }
+      .message-box p { margin-bottom: 0.8rem; }
+      .big-msg { font-size: 1.05rem; }
+      .cat-container { width: 70px; height: 70px; }
+    }
+
+    @media (max-height: 580px) {
+      h1 { font-size: 1.15rem; }
+      .subtitle { display: none; }
+      .divider { margin-bottom: 0.8rem; }
+      .message-box { line-height: 1.6; }
+    }
+
+    @media (max-width: 340px) {
+      .container { padding: 1.4rem 0.9rem; width: calc(100% - 1rem); }
+      button { padding: 0.75rem 1.2rem; font-size: 0.85rem; }
+      .cat-container { width: 65px; height: 65px; }
+    }
+
+    @media (max-height: 450px) and (orientation: landscape) {
+      .container {
+        max-height: 96vh;
+        padding: 1rem 1.2rem;
+      }
+      h1 { font-size: 1.2rem; }
+      .subtitle { display: none; }
+      .ornament { display: none; }
+      .divider { margin-bottom: 0.6rem; }
+      button { min-height: 44px; padding: 0.6rem 1.5rem; }
+      .message-box { margin-top: 0.8rem; padding: 0.9rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== BACKGROUND GLOWS ========== -->
+  <div class="glow g1"></div>
+  <div class="glow g2"></div>
+  <div class="glow g3"></div>
+
+  <!-- ========== TWINKLING STARS ========== -->
+  <div class="stars" aria-hidden="true">
+    <div class="star"></div><div class="star"></div><div class="star"></div>
+    <div class="star"></div><div class="star"></div><div class="star"></div>
+    <div class="star"></div><div class="star"></div><div class="star"></div>
+    <div class="star"></div><div class="star"></div><div class="star"></div>
+  </div>
+
+  <!-- ========== FLOATING HEARTS ========== -->
+  <div class="floating-hearts" aria-hidden="true">
+    <div class="f-heart">❤</div>
+    <div class="f-heart">💖</div>
+    <div class="f-heart">❤</div>
+    <div class="f-heart">💕</div>
+    <div class="f-heart">❤</div>
+    <div class="f-heart">💖</div>
+    <div class="f-heart">❤</div>
+    <div class="f-heart">💕</div>
+    <div class="f-heart">❤</div>
+    <div class="f-heart">💖</div>
+    <div class="f-heart">❤</div>
+    <div class="f-heart">💕</div>
+  </div>
+
+  <!-- ========== FLOATING CUTE CAT (HOLDING HEART) ========== -->
+  <div class="cat-container" id="catFloat" aria-hidden="true">
+    <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- tail -->
+      <path class="tail" d="M95 78 Q108 68 104 52 Q100 40 90 44" stroke="#FFB6D0" stroke-width="6" stroke-linecap="round" fill="none"/>
+      
+      <!-- body -->
+      <ellipse cx="60" cy="80" rx="30" ry="26" fill="#FFD1E3" stroke="#FF8FB8" stroke-width="3"/>
+      
+      <!-- head -->
+      <circle cx="60" cy="50" r="27" fill="#FFD1E3" stroke="#FF8FB8" stroke-width="3"/>
+      
+      <!-- ears -->
+      <path d="M40 30 L34 12 L52 24 Z" fill="#FFD1E3" stroke="#FF8FB8" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M80 30 L86 12 L68 24 Z" fill="#FFD1E3" stroke="#FF8FB8" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M41 27 L38 18 L48 24 Z" fill="#FF6B9D"/>
+      <path d="M79 27 L82 18 L72 24 Z" fill="#FF6B9D"/>
+      
+      <!-- eyes (blinking) -->
+      <g class="eyes">
+        <ellipse cx="49" cy="48" rx="4.5" ry="5.5" fill="#3A1A28"/>
+        <ellipse cx="71" cy="48" rx="4.5" ry="5.5" fill="#3A1A28"/>
+        <circle cx="50.5" cy="46" r="1.8" fill="white"/>
+        <circle cx="72.5" cy="46" r="1.8" fill="white"/>
+      </g>
+      
+      <!-- nose & mouth -->
+      <path d="M58 56 L62 56 L60 59 Z" fill="#FF4D88"/>
+      <path d="M60 59 Q55 63 52 60" stroke="#C96A8E" stroke-width="2" stroke-linecap="round" fill="none"/>
+      <path d="M60 59 Q65 63 68 60" stroke="#C96A8E" stroke-width="2" stroke-linecap="round" fill="none"/>
+      
+      <!-- whiskers -->
+      <line x1="28" y1="52" x2="42" y2="54" stroke="#C96A8E" stroke-width="2" stroke-linecap="round"/>
+      <line x1="28" y1="60" x2="42" y2="59" stroke="#C96A8E" stroke-width="2" stroke-linecap="round"/>
+      <line x1="92" y1="52" x2="78" y2="54" stroke="#C96A8E" stroke-width="2" stroke-linecap="round"/>
+      <line x1="92" y1="60" x2="78" y2="59" stroke="#C96A8E" stroke-width="2" stroke-linecap="round"/>
+      
+      <!-- cheeks -->
+      <circle cx="38" cy="57" r="4" fill="#FF6B9D" opacity="0.55"/>
+      <circle cx="82" cy="57" r="4" fill="#FF6B9D" opacity="0.55"/>
+      
+      <!-- paws holding the heart -->
+      <ellipse cx="46" cy="76" rx="8" ry="6" fill="#FFD1E3" stroke="#FF8FB8" stroke-width="3"/>
+      <ellipse cx="74" cy="76" rx="8" ry="6" fill="#FFD1E3" stroke="#FF8FB8" stroke-width="3"/>
+      
+      <!-- glowing heart held in paws -->
+      <g class="held-heart">
+        <path d="M60 82 C60 82 46 73 46 64 C46 58 51 55 56 55 C58.5 55 60 58 60 58 C60 58 61.5 55 64 55 C69 55 74 58 74 64 C74 73 60 82 60 82 Z" fill="#FF4D88" stroke="#FFB6D0" stroke-width="2"/>
+        <circle cx="52" cy="61" r="2.5" fill="white" opacity="0.7"/>
+      </g>
+      
+      <!-- bottom paws -->
+      <ellipse cx="42" cy="98" rx="10" ry="7" fill="#FFD1E3" stroke="#FF8FB8" stroke-width="3"/>
+      <ellipse cx="78" cy="98" rx="10" ry="7" fill="#FFD1E3" stroke="#FF8FB8" stroke-width="3"/>
+    </svg>
+  </div>
+
+  <!-- ========== MAIN CARD ========== -->
+  <div class="container" id="mainContainer">
+    <div class="ornament">✦ ❤ ✦</div>
+    <h1><span class="paw">🐾</span> HAPPY MONTHSARY PALANGGA <span class="paw">🐾</span></h1>
+    <div class="subtitle">— a love letter just for you —</div>
+    <div class="divider"><span class="heart-icon">♡</span></div>
+
+    <div class="button-group">
+      <button id="yesBtn" type="button">click basaha tanan ha</button>
+    </div>
+
+    <!-- ========== LONG MESSAGE ========== -->
+    <div class="message-box" id="messageBox">
+        <div class="big-msg">💕 Happy Monthsary, Palangga! 💕</div>
+
+
+        </p>
+
+        I just want to say that I love you so much. Happy monthsary, my love! It feels like just yesterday,
+        and now it’s already been 5 months! I love you, my love.
+        I know I’ve made many mistakes and sometimes said things that were hurtful,
+        but I always try my best to ensure those things don’t happen again. I love you so much, my love.
+
+        <p>
+            hii palangggaaaa good morning i hope you slept well and had the sweetest dreams. I just wanted to take a moment to tell you how much you mean to me, and how grateful I am for every single day we've spent together.
+            From the very first day we talked, I already knew there was something special about you.
+            Your smile, your laugh, the way you say my name — everything about you felt like home.
+            And now, looking back at all the months we've shared, I realize that feeling has only grown
+            stronger with every passing day.
+        </p>
+        Thank you for being the person who understands me even when I don't say a word. Thank you
+        for the endless patience, the warm hugs, the silly jokes that make me laugh until my cheeks
+        hurt, and the quiet moments where we don't even need to speak. You've filled my life with
+        colors I never knew existed.
+        <p>
+            Every month with you feels like a new chapter in the best story I've ever read. We've had
+            our ups and downs, our misunderstandings and make-ups, but through it all, you've stayed.
+            You chose me, again and again, and that is the greatest gift anyone could ever give me.
+            I promise to keep choosing you too — every single day, without hesitation.
+        </p>
+        You are my safe place, my favorite person. I don't know what the
+        future holds, but I know one thing for sure — I want to face it all with you by my side.
+        <p>
+            so mag binisaya nako uyy kay hasol mag translate hahaha palanggga, palangga, palangga.
+            I love you so much. I love you more than words can express, more than the stars in the sky, more than the waves in the ocean.
+            You are my everything, and I am so lucky to have you in my life. daa kabasa ka ana HAHAHAH
+            bitaw lang unta dili ka ma pul-an sa akoa palangga. I promise to keep loving you, cherishing you, and making you feel as special as you make me feel every single day.
+            dili jud nako kaya kung wala ka sa akoa palangga. I love you so much, and I can't wait to see what the future holds for us together.
+
+
+        </p>
+        nya palanggaa bisag usahay dili ta mag ka sinabot pero gina pili gihapon nato ang usag usa and thankful kayko ana palangga
+        unta dili ka ma pul an sa akoang batasan i miss you so muchh palangga ug unta ampingan nimo imong kaugalingon langga
+        kay layu kayko para protectahan la I love you so much palanggaaa.
+        <p>
+            salamat kaayu palangga ha kay bisag usahay bugoy kaayu ko kaya ra nimo antoson ug bisag usahay dita mag ka sinabot mag stay gihapon ka sa akoa
+            salamat kaayu palanggaa ug bisag unsa man unta ka dako atoang away dili mag pa comfort sa BFF ha HAHAH atik ra I LOVE YOU SO MUCHH PALANGAA
+            kanus a ratong  <span class="highlight-pill">hi kuya.</span> hahahah ug kanus a ratong <span class="highlight-pill">taga saan ka??.</span> ay naman HAHAHHA
+            pa tagalog tagalog payan siya HAHAHAH kanus a ra tawn to nya karon awa 5 months nata hangtod sa years then decades ug sa hangtod hangtod
+            unta dika ma pul an sa akong batasan ug nawng langga I LOVE YOU SO MUCHH 💋💋💋💋💋
+        </p>
+        gusto lang nako i sulti nga ako ang pinaka swerteng tao sa kalibutan CHARRR HAHAH kay syempre ikaw lang ang aking iibigin ang aking///
+        ayy sorry mali// kay syempre akong uyab gwapa, bright, buotan, gwapa nasab kay syempe saksakan ng ganda gud hahaha, nya kabalo mo luto, siner, dancer halaaa
+        naa sa imoha tanan palangga and pround kaayu ko sa imoha kumbaga full package kanag maldita dali ra saputon ayy mali nasab bitaw lang pwedi bawasan pagka maldita
+        gamay ragudt mga 1% ragud HAHAHAHH kay kasi ahm malooy ka huhu AHAHAHAHAH chrr lng kaya kuna uys duhhh small thing's bitaw lang swerte kaayu ko sa katanannn
+        in english lucky 7 AYYY mali basta swerte ko kay naabot kas kinabuhi nako
+        </p>
+        wala pako nahuman ha basinnn na na na AY HAHAHAH kana bitang mag uban ta dijud pwedi nga di nako matutukan imohang ka gwapa like ahhhhh wtf uyab kunii??
+        ikaw man pud pina ka swerting bae lang kay syempre alam mona pogi tas gwapo ta cute pajud kay uyab ayyyy mali HAHaHAHAHAH lang happy monthsary palangga mas taas na akung letter sa imoha ron.
+        bantay bitaw dili nimo ni basahon haa basaha tanan kay mag pa quiz ko inig human HAHAHAHAHAHAH basaha haaa
+        </p>
+        so kini nga part kay mag story ko about sa atoang duha kay kuan kay nganung dili gud so ang pinaka first meet up nato HAHAHA kulbaan k ato kay first time nako to nag laroy2 sa tagum
+        nya na kulbaan pako pag abot kay na saag nami ato akung gina sakyan ayy atay kaayu may gani na hibaw an pa nako nga tapad sa simbahan HAHAHAH ug didto na dayun dugay pa kaayu ka ni gawas ato
+        nya pag gawas nimo ato kay kalkag pa kaayu kag buhok ato HAHAHAH nya naka short ssexy kaayu like duhhhh nya na tingala ko kabalo lagi ni mo lips to lips HAHAHHA
+        nya medjo nag dali ko ato kay in heat HAHAHHAHA pero okay ra medjo away kadali HAHAHAHA nya laag dayun ta sa Gmall, histo nya mawtoy pianaka malas ug pinaka lingaw nga laag nato kay
+        bisag ulan halaa laag jud HAHAHAHAH nya mato uli dayun pagka buntag kay naabot imong tita HAAHHA mawto first meet HAAHAHHA
+
+        </p>
+        hyyyst soon imong name kay <span class="highlight-pill">Vienne Audrey B. Dela Cruz</span> ayyyyyy naman HAHAHA gandaaaa hysst basaha ni tanan palanggaaa ha
+
+        </p>
+         
+        <div class="emoji-row">💋💋💋💋💋</div>
+         
+        <p>
+            So here's to us — to every laugh, every tear, every adventure, and every quiet night.
+            Here's to more monthsaries, more memories, and more love than we know what to do with.
+            <span class="highlight-pill">I LOVE YOU PALANGGA.</span> Always and forever.
+        </p>
+
+        <div class="signature">— your palangga: carl 🐱💕</div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      'use strict';
+
+      const yesBtn = document.getElementById('yesBtn');
+      const messageBox = document.getElementById('messageBox');
+      const container = document.getElementById('mainContainer');
+
+      let isMessageShown = false;
+
+      function createSparkles(originX, originY) {
+        const sparkleEmojis = ['✨', '💖', '⭐', '💕', '❤️', '🌟', '💫'];
+        const count = 14;
+        for (let i = 0; i < count; i++) {
+          const sparkle = document.createElement('div');
+          sparkle.className = 'sparkle';
+          sparkle.textContent = sparkleEmojis[Math.floor(Math.random() * sparkleEmojis.length)];
+          sparkle.style.left = originX + 'px';
+          sparkle.style.top = originY + 'px';
+          const angle = (Math.PI * 2 * i) / count + Math.random() * 0.5;
+          const dist = 60 + Math.random() * 120;
+          sparkle.style.setProperty('--dx', Math.cos(angle) * dist + 'px');
+          sparkle.style.setProperty('--dy', Math.sin(angle) * dist + 'px');
+          sparkle.style.setProperty('--rot', (Math.random() * 720 - 360) + 'deg');
+          sparkle.style.fontSize = (12 + Math.random() * 14) + 'px';
+          document.body.appendChild(sparkle);
+          setTimeout(() => sparkle.remove(), 1300);
+        }
+      }
+
+      yesBtn.addEventListener('click', function(e) {
+        if (isMessageShown) return;
+        isMessageShown = true;
+
+        const rect = yesBtn.getBoundingClientRect();
+        createSparkles(rect.left + rect.width / 2, rect.top + rect.height / 2);
+
+        messageBox.classList.add('show');
+
+        yesBtn.textContent = '💖 I love you! 💖';
+        yesBtn.disabled = true;
+        yesBtn.style.opacity = '0.9';
+        yesBtn.style.cursor = 'default';
+        yesBtn.style.letterSpacing = '0.5px';
+        yesBtn.style.fontSize = '0.9rem';
+        yesBtn.style.animation = 'none';
+
+        container.style.transform = 'scale(1.012)';
+        setTimeout(() => {
+          container.style.transform = 'scale(1)';
+        }, 250);
+
+        setTimeout(() => {
+          messageBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 350);
+
+        setTimeout(() => {
+          const msgRect = messageBox.getBoundingClientRect();
+          if (msgRect.top > 0 && msgRect.top < window.innerHeight) {
+            createSparkles(msgRect.left + msgRect.width / 2, msgRect.top + 30);
+          }
+        }, 600);
+      });
+
+      document.addEventListener('dblclick', function(e) {
+        e.preventDefault();
+      }, { passive: false });
+
+      document.body.addEventListener('touchmove', function(e) {
+        if (e.target.closest('.container')) return;
+        e.preventDefault();
+      }, { passive: false });
+    })();
+  </script>
+</body>
+</html>
